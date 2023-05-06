@@ -1,0 +1,260 @@
+[
+    {
+        "Zona": "Beni"
+    },
+    {
+        "Zona": "Cobija"
+    },
+    {
+        "Zona": "Cochabamba - *Fuera de ruta"
+    },
+    {
+        "Zona": "Cochabamba - Alalay"
+    },
+    {
+        "Zona": "Cochabamba - Av. Beijing"
+    },
+    {
+        "Zona": "Cochabamba - Av. Humbolt"
+    },
+    {
+        "Zona": "Cochabamba - Av. Villavicencio"
+    },
+    {
+        "Zona": "Cochabamba - Blanco Galindo"
+    },
+    {
+        "Zona": "Cochabamba - Colcapirhua"
+    },
+    {
+        "Zona": "Cochabamba - La Chimba"
+    },
+    {
+        "Zona": "Cochabamba - Melchor Perez, Circunvalacion"
+    },
+    {
+        "Zona": "Cochabamba - Molle Molle, Santa Barbara"
+    },
+    {
+        "Zona": "Cochabamba - Moxos, La cancha"
+    },
+    {
+        "Zona": "Cochabamba - Quillacollo"
+    },
+    {
+        "Zona": "Cochabamba - Sacaba"
+    },
+    {
+        "Zona": "Cochabamba - Simon Lopez, Tiquipaya, Cala Cala"
+    },
+    {
+        "Zona": "Cochabamba - Zona Central"
+    },
+    {
+        "Zona": "Cochabamba - Zona Norte"
+    },
+    {
+        "Zona": "Cochabamba - Zona Sur"
+    },
+    {
+        "Zona": "El Alto - Alto Lima"
+    },
+    {
+        "Zona": "El Alto - Av. 6 de Marzo Kenko"
+    },
+    {
+        "Zona": "El Alto - Carretera Viacha"
+    },
+    {
+        "Zona": "El Alto - Ceja, Z.12 Octubre, V. Dolores"
+    },
+    {
+        "Zona": "El Alto - Ciudad Satelite"
+    },
+    {
+        "Zona": "El Alto - Rio Seco, Ex-Tranca"
+    },
+    {
+        "Zona": "El Alto - Santiago I, Reg. Ingavi"
+    },
+    {
+        "Zona": "El Alto - Villa Adela, San Luis"
+    },
+    {
+        "Zona": "El Alto - z/16 de Julio"
+    },
+    {
+        "Zona": "El Alto - Z/Senkata, Ventilla"
+    },
+    {
+        "Zona": "La Paz - *Fuera de ruta"
+    },
+    {
+        "Zona": "La Paz - Isaac Tamayo"
+    },
+    {
+        "Zona": "La Paz - Miraflores, Villa Fatima"
+    },
+    {
+        "Zona": "La Paz - Montes, America"
+    },
+    {
+        "Zona": "La Paz - Munaypata"
+    },
+    {
+        "Zona": "La Paz - Norte La Paz"
+    },
+    {
+        "Zona": "La Paz - San Pedro, Centro"
+    },
+    {
+        "Zona": "La Paz - Sopochachi"
+    },
+    {
+        "Zona": "La Paz - Zona Sur"
+    },
+    {
+        "Zona": "Oruro"
+    },
+    {
+        "Zona": "Potosí"
+    },
+    {
+        "Zona": "Santa Cruz - *Fuera de Ruta"
+    },
+    {
+        "Zona": "Santa Cruz - 1er Anillo - Centro"
+    },
+    {
+        "Zona": "Santa Cruz - 2do Anillo"
+    },
+    {
+        "Zona": "Santa Cruz - 3 Pasos al Frente"
+    },
+    {
+        "Zona": "Santa Cruz - Alto San Pedro"
+    },
+    {
+        "Zona": "Santa Cruz - Av. Alemana"
+    },
+    {
+        "Zona": "Santa Cruz - Av. Banzer, Cristo Redentor"
+    },
+    {
+        "Zona": "Santa Cruz - Beni"
+    },
+    {
+        "Zona": "Santa Cruz - Canal Isuto"
+    },
+    {
+        "Zona": "Santa Cruz - Cañoto"
+    },
+    {
+        "Zona": "Santa Cruz - Carretera Warnes"
+    },
+    {
+        "Zona": "Santa Cruz - Colorada"
+    },
+    {
+        "Zona": "Santa Cruz - Cotoca"
+    },
+    {
+        "Zona": "Santa Cruz - Cumavi"
+    },
+    {
+        "Zona": "Santa Cruz - Doble Vía La Guardia"
+    },
+    {
+        "Zona": "Santa Cruz - Enmallado"
+    },
+    {
+        "Zona": "Santa Cruz - Equipetrol"
+    },
+    {
+        "Zona": "Santa Cruz - Florida"
+    },
+    {
+        "Zona": "Santa Cruz - Grigota"
+    },
+    {
+        "Zona": "Santa Cruz - Montero"
+    },
+    {
+        "Zona": "Santa Cruz - Mutualista"
+    },
+    {
+        "Zona": "Santa Cruz - Nuevo Palmar"
+    },
+    {
+        "Zona": "Santa Cruz - Paragua"
+    },
+    {
+        "Zona": "Santa Cruz - Parque Industrial"
+    },
+    {
+        "Zona": "Santa Cruz - Pirai"
+    },
+    {
+        "Zona": "Santa Cruz - Plan 3000"
+    },
+    {
+        "Zona": "Santa Cruz - Radial 10"
+    },
+    {
+        "Zona": "Santa Cruz - Radial 13"
+    },
+    {
+        "Zona": "Santa Cruz - Radial 19"
+    },
+    {
+        "Zona": "Santa Cruz - Radial 21"
+    },
+    {
+        "Zona": "Santa Cruz - Radial 26"
+    },
+    {
+        "Zona": "Santa Cruz - Radial 27"
+    },
+    {
+        "Zona": "Santa Cruz - Ramada"
+    },
+    {
+        "Zona": "Santa Cruz - Roca y Coronado"
+    },
+    {
+        "Zona": "Santa Cruz - San Aurelio"
+    },
+    {
+        "Zona": "Santa Cruz - San Martin"
+    },
+    {
+        "Zona": "Santa Cruz - Santos Dumont"
+    },
+    {
+        "Zona": "Santa Cruz - Sirari"
+    },
+    {
+        "Zona": "Santa Cruz - Trompillo"
+    },
+    {
+        "Zona": "Santa Cruz - Urubo"
+    },
+    {
+        "Zona": "Santa Cruz - V. 1° de mayo"
+    },
+    {
+        "Zona": "Santa Cruz - Virgen de Cotoca"
+    },
+    {
+        "Zona": "Santa Cruz - Virgen de Lujan"
+    },
+    {
+        "Zona": "Santa Cruz - Viru Viru"
+    },
+    {
+        "Zona": "Sucre"
+    },
+    {
+        "Zona": "Tarija"
+    }
+]

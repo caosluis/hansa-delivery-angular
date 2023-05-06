@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Crear Almacen</h2>
+<mat-dialog-content class="ventanaMetodo">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="formMetodo">
+        <mat-select
+          placeholder="Cobranza"
+          [(ngModel)]="TipoTarea"
+          #inputTipoTarea
+          matInput
+        >
+          <mat-option [value]="'01'">
+            Sin Cobranza
+          </mat-option>
+          <mat-option [value]="'02'">
+            Con Cobranza
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field class="formMetodo">
+        <mat-label>MetodoPago</mat-label>
+        <input
+          type="text"
+          #inputMetodoPago
+          matInput
+          [(ngModel)]="MetodoPago"
+          placeholder="MetodoPago"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="CrearAlmacen()"
+    [disabled]="TipoTarea === undefined || MetodoPago === undefined || loading"
+  >
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    {{ data == "Nuevo" ? "Registrar Método" : "Modificar Método" }}
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    type="button"
+    (click)="onNoClick()"
+    mat-flat-button
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>

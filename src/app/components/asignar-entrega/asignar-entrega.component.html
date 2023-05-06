@@ -1,0 +1,205 @@
+<h2 mat-dialog-title>Asignar Entrega</h2>
+<mat-dialog-content class="ventanaAsignar">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="formAsignacion">
+            <mat-label>--Seleccione un Conductor--</mat-label>
+            <mat-select
+              placeholder="Conductor"
+              [(ngModel)]="CodUsuario"
+              #inputConductor
+              matInput
+            >
+              <mat-option
+                *ngFor="let element of ConductoresList"
+                [value]="element.CodUsuario"
+                >{{ element.CodUsuario }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="formAsignacion">
+            <mat-label>--Seleccione un Almacén--</mat-label>
+            <mat-select
+              #inputAlmacen
+              [(ngModel)]="Almacen"
+              matInput
+              placeholder="Almacén"
+              (selectionChange)="SeleccionarAlmacen($event.value)"
+            >
+              <mat-option
+                *ngFor="let element of AlmacenesList"
+                [value]="element.CodAlmacen"
+                >{{ element.Almacen }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Nro de Factura</mat-label>
+            <input
+              type="text"
+              [(ngModel)]="NroFactura"
+              #inputNroFactura
+              matInput
+              placeholder="Nota"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="formAsignacion">
+            <mat-label>FacturaAIO</mat-label>
+            <input
+              type="text"
+              [(ngModel)]="FacturaAIO"
+              #inputFacturaAIO
+              matInput
+              placeholder="Nota"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Cliente</mat-label>
+            <input
+              type="text"
+              [readonly]="true"
+              [(ngModel)]="Nombre"
+              #inputNombre
+              matInput
+              placeholder="Cliente"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Código Cliente</mat-label>
+            <input
+              type="text"
+              [(ngModel)]="KUNNR"
+              #inputKunnr
+              matInput
+              placeholder="Código Cliente"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Dirección</mat-label>
+            <input
+              type="text"
+              #inputDireccion
+              [readonly]="true"
+              matInput
+              placeholder="Dirección"
+              [(ngModel)]="Direccion"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Latitud</mat-label>
+            <input
+              type="text"
+              #inputLatitud
+              [readonly]="true"
+              matInput
+              [(ngModel)]="Latitud"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Longitud</mat-label>
+            <input
+              type="text"
+              #inputLongitud
+              [readonly]="true"
+              matInput
+              [(ngModel)]="Longitud"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Descripción</mat-label>
+            <input
+              type="text"
+              #inputDescripcion
+              matInput
+              [(ngModel)]="Descripcion"
+              placeholder="Descripción"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="formAsignacion">
+            <mat-label>Nota</mat-label>
+            <input
+              type="text"
+              [(ngModel)]="Nota"
+              #inputDescripcion
+              matInput
+              placeholder="Nota"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="VistaMapa"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    class="boton"
+    (click)="AsignarConductor()"
+    [disabled]="
+      CodUsuario === undefined ||
+      Almacen === undefined ||
+      NroFactura === undefined ||
+      FacturaAIO === undefined ||
+      KUNNR === undefined ||
+      Latitud === 0 ||
+      Longitud === 0 ||
+      loading
+    "
+  >
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Asignar Entrega
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    type="button"
+    (click)="onNoClick()"
+    mat-flat-button
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>

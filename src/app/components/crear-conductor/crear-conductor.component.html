@@ -1,0 +1,113 @@
+<h2 mat-dialog-title>Registro de Nuevo Conductor</h2>
+<mat-dialog-content class="ventanaCrear">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="formCrear">
+        <mat-select placeholder="Estado" [(ngModel)]="Estado" #inputEstado matInput>
+          <mat-option [value]="'Activo'">Activo</mat-option>
+          <mat-option [value]="'Inactivo'">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputNombre matInput placeholder="Nombre" [(ngModel)]="Nombre" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <mat-select placeholder="Regional" #inputAmercado matInput [(ngModel)]="Regional"
+          (selectionChange)="SeleccionarRegional($event.value)">
+          <mat-option *ngFor="let element of regionalesList" [value]="element.Regional">{{ element.Regional }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="formCrear">
+        <mat-select placeholder="Tienda" #inputTienda matInput [(ngModel)]="Tienda">
+          <mat-option *ngFor="let element of TiendasList" [value]="element.Tienda">{{ element.Tienda }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputCodUsuario matInput placeholder="CodUsuario" [(ngModel)]="CodUsuario" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputPassword matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
+          [(ngModel)]="Password" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <!--   <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input
+          type="text"
+          #inputIdVendedor
+          matInput
+          placeholder="IdVendedor"
+          [(ngModel)]="IdVendedor"
+        />
+      </mat-form-field>
+    </div> -->
+    <div class="col-md-12">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputCI matInput placeholder="CI" [(ngModel)]="CI" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputPlaca matInput placeholder="Placa" [(ngModel)]="Placa" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputTelefono matInput placeholder="Teléfono" [(ngModel)]="Telefono" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <mat-select placeholder="Tipo de Vehiculo" #inputTipoVehiculo matInput [(ngModel)]="TipoVehiculo"
+          (selectionChange)="SeleccionarTipoVehiculo($event.value)">
+          <mat-option *ngFor="let element of tipovehiculoList" [value]="element.TipoVehiculo">{{ element.TipoVehiculo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputCapacidad matInput placeholder="Capacidad KG" [(ngModel)]="Capacidad" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="formCrear">
+        <input type="text" #inputDescripcion matInput placeholder="Descripcion" [(ngModel)]="Descripcion" autocomplete="off"/>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button class="boton" (click)="RegistrarConductor()">
+    Registrar Conductor
+  </button>
+  <button mat-raised-button color="warn" type="button" (click)="onNoClick()" mat-flat-button>
+    Cancelar
+  </button>
+</mat-dialog-actions>

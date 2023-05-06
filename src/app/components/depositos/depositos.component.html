@@ -1,0 +1,160 @@
+<mat-card>
+  <div class="row">
+    <div class="col-sm-7">
+      <mat-card-header>
+        <mat-card-title>Depósitos Bancarios</mat-card-title>
+        <mat-card-subtitle
+          >Visualiza los Depósitos y permite ver su Detalle.</mat-card-subtitle
+        >
+      </mat-card-header>
+    </div>
+    <div class="col-sm-5">
+      <ul class="nav justify-content-end menuboton">
+        <li class="nav-item">
+          <button
+            mat-raised-button
+            class="boton"
+            (click)="exportexcel()"
+            [disabled]="cargandoDescarga"
+          >
+            <span
+              *ngIf="cargandoDescarga"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            <mat-icon> cloud_download</mat-icon>
+            Descargar Excel
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tablaDepositos">
+    <table mat-table id="excel-table" [dataSource]="Depositos" matSort>
+      <ng-container matColumnDef="Banco">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Banco
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Banco }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Fecha Depósito
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Fecha | date: "EEEE d MMMM y":"UTC" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="FechaRegistro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Fecha de Registro
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.FechaRegistro | date: "EEEE d MMMM y":"UTC" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="CodUsuario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          CodUsuario
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.CodUsuario }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="DesEntrega">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          DesEntrega
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.DesEntrega }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Moneda">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Moneda
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Moneda }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Monto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Monto
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Monto }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Depositante">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Depositante
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Depositante }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NroDocumento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          NroDocumento
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.NroDocumento }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Obs">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Obs
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Obs }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Regional">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Regional
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Regional }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Procesado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Procesado
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Procesado }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="accionesConductores">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #accionesConductores="matMenu">
+            <button mat-menu-item (click)="Detalle(element)">
+              <span>Detalle</span>
+            </button></mat-menu
+          >
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="DepositosColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: DepositosColumns"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[12, 24, 48]"></mat-paginator>
+  </div>
+</mat-card>

@@ -1,0 +1,47 @@
+[
+  {
+    "IdDivision": "01",
+    "DivisionNombre": "01 Industria & Construcción",
+    "OrgVentas": "1100"
+  },
+  {
+    "IdDivision": "02",
+    "DivisionNombre": "02 Consumo & Pharma",
+    "OrgVentas": "1200"
+  },
+  {
+    "IdDivision": "03",
+    "DivisionNombre": "03 Automotriz",
+    "OrgVentas": "1300"
+  },
+  {
+    "IdDivision": "04",
+    "DivisionNombre": "04 Soluciones Médicas",
+    "OrgVentas": "1400"
+  },
+  {
+    "IdDivision": "05",
+    "DivisionNombre": "05 Energia & Automatización",
+    "OrgVentas": "1500"
+  },
+  {
+    "IdDivision": "06",
+    "DivisionNombre": "06 Proyectos & Servicios",
+    "OrgVentas": "1600"
+  },
+  {
+    "IdDivision": "07",
+    "DivisionNombre": "07 Windsor",
+    "OrgVentas": "1700"
+  },
+  {
+    "IdDivision": "98",
+    "DivisionNombre": "98 Holding",
+    "OrgVentas": "9800"
+  },
+  {
+    "IdDivision": "99",
+    "DivisionNombre": "99 Administración & Finanzas",
+    "OrgVentas": "9900"
+  }
+]

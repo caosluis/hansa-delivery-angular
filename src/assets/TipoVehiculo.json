@@ -1,0 +1,14 @@
+[
+    {
+        "TipoVehiculo": "Automóvil",
+        "IdTipoVehiculo": "01"
+    },
+    {
+        "TipoVehiculo": "Motocicleta",
+        "IdTipoVehiculo": "02"
+    },
+    {
+        "TipoVehiculo": "Bicicleta",
+        "IdTipoVehiculo": "03"
+    }
+]

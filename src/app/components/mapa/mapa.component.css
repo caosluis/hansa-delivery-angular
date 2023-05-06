@@ -1,0 +1,77 @@
+#MapVisitasComponent {
+  height: 100%;
+  width: 100%;
+}
+
+#VistaMapa {
+  height: 85vh;
+  width: 100%;
+}
+
+.sidebar_izq {
+  width: 250px;
+  background-color: #bdbdbd;
+}
+.Nuevo {
+  color: #000000;
+  background-color: #d3d3d3;
+  border-color: #d3d3d3;
+  padding: 5px;
+  font-size: x-small;
+}
+.Camino {
+  color: #ffffff;
+  background-color: #ff8a65;
+  border-color: #ff8a65;
+  padding: 5px;
+  font-size: x-small;
+}
+
+.Progreso {
+  color: #000000;
+  background-color: #fff59d;
+  border-color: #fff59d;
+  padding: 5px;
+  font-size: x-small;
+}
+.Cancelado {
+  color: #ffffff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  padding: 5px;
+  font-size: x-small;
+}
+.Finalizado {
+  color: #ffffff;
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+  padding: 3px;
+  font-size: x-small;
+}
+.Conductor {
+  margin-bottom: 4px;
+}
+.tarea {
+  font-size: small;
+}
+.tablaEntregas {
+  width: 100%;
+  height: 70vh;
+  font-size: small;
+}
+.mat-cell {
+  font-size: small;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.marker-leyenda {
+  width: 25px;
+  height: 27px;
+}
+.filtro {
+  width: 100%;
+}
+table {
+  width: 100%;
+}

@@ -1,0 +1,391 @@
+<!-- 
+<mat-tab-group>
+  <mat-tab label="Mapa">
+    
+  </mat-tab>
+  <mat-tab label="Reporte">
+    
+  </mat-tab>
+</mat-tab-group> -->
+<div id="MapVisitasComponent">
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button class="boton" (click)="sidenav1.toggle()">
+      <mat-icon>compare_arrows</mat-icon>
+    </button>
+    <button mat-raised-button class="boton" [matMenuTriggerFor]="Filtros">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-icon-button class="boton" [matMenuTriggerFor]="configuraciones" [hidden]="false">
+      <mat-icon>settings</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav1 opened mode="side" class="sidebar_izq">
+      <mat-progress-bar mode="indeterminate" *ngIf="cargadorIzquierdo" color="warn"></mat-progress-bar>
+      <mat-accordion>
+        <ng-container *ngFor="let conductor of ConductoresList">
+          <mat-expansion-panel class="Conductor" [hideToggle]="true">
+            <mat-expansion-panel-header [collapsedHeight]="'80px'" [expandedHeight]="'80px'">
+              <div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{ conductor.Nombre }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{ conductor.Placa }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <span class="badge badge-danger badge-estado">
+                      ENT {{MostrarContadorFinalizadas(conductor.CodUsuario)}}/{{MostrarContador(conductor.CodUsuario)}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel-header>
+            <ng-container *ngFor="let entrega of EntregasList">
+              <div *ngIf="conductor.CodUsuario == entrega.CodUsuario" class="card mb-3 {{ entrega.Estado }}">
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{ entrega.FechaEntrega | date: "EEEE d MMMM y":"UTC" }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    {{ entrega.Nombre }}
+                  </div>
+                  <div class="col-sm-6">
+                    {{ entrega.NroPedido }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{ entrega.Zona }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{ entrega.Direccion }}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <span *ngIf="EstadoTarea(entrega.IdEntrega, '01')" class="badge tarea {{
+                        EstadoTarea(entrega.IdEntrega, '01')
+                      }}">ENT</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <span *ngIf="EstadoTarea(entrega.IdEntrega, '02')" class="badge tarea {{
+                        EstadoTarea(entrega.IdEntrega, '02')
+                      }}">COB</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <button mat-icon-button class="btn btn-secondary btn-estado btn-sm"
+                      (click)="SeleccionarMarker(entrega.IdEntrega)">
+                      <mat-icon>open_in_new</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Mapa">
+          <mat-progress-bar mode="indeterminate" *ngIf="cargadorIzquierdo" color="warn"></mat-progress-bar>
+          <div id="VistaMapa"></div>
+        </mat-tab>
+        <mat-tab label="Entregas">
+          <mat-progress-bar mode="indeterminate" *ngIf="cargadorIzquierdo" color="warn"></mat-progress-bar>
+          <mat-card>
+            <div class="row">
+              <div class="col-sm-7">
+                <mat-card-header>
+                  <mat-card-title>Entregas</mat-card-title>
+                  <mat-card-subtitle>Visualiza las Entregas y permite asignarlas a
+                    Conductores.</mat-card-subtitle>
+                </mat-card-header>
+              </div>
+              <div class="col-sm-5">
+                <ul class="nav justify-content-end menuboton">
+                  <li class="nav-item">
+                    <mat-form-field appearance="standard" class="buscador">
+                      <mat-label>Buscar</mat-label>
+                      <input matInput placeholder="Buscar" autocomplete="off"
+                        (keyup)="applyFilter($event.target.value)" />
+                    </mat-form-field>
+                  </li>
+                  <li class="nav-item">
+                    <button mat-raised-button class="boton" (click)="CrearEntrega()">
+                      <span *ngIf="cargandoDescarga" class="spinner-border spinner-border-sm mr-1"></span>
+                      <mat-icon>add</mat-icon>
+                      Nuevo
+                    </button>
+                  </li>
+                  <li>
+                    <button mat-raised-button class="boton" (click)="exportexcel()" [disabled]="cargandoDescarga">
+                      <span *ngIf="cargandoDescarga" class="spinner-border spinner-border-sm mr-1"></span>
+                      <mat-icon> cloud_download</mat-icon>
+                      Descargar Excel
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </mat-card>
+
+          <div class="tablaEntregas">
+            <table mat-table id="excel-table" [dataSource]="Entregas" matSort>
+              <ng-container matColumnDef="PedidoNro">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nro de Pedido
+                </th>
+                <td mat-cell *matCellDef="let element" width="10%">
+                  {{ element.NroPedido }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Estado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Estado
+                </th>
+                <td mat-cell *matCellDef="let element" width="10%">
+                  {{ element.Estado }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Conductor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Conductor
+                </th>
+                <td mat-cell *matCellDef="let element" width="10%">
+                  {{ element.CodUsuario }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="MetodoPago">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Metodo Pago
+                </th>
+                <td mat-cell *matCellDef="let element" width="10%">
+                  {{ MetodoPagoApp(element.MetodoPago) }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Zona">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Zona
+                </th>
+                <td mat-cell *matCellDef="let element" width="20%">
+                  {{ element.Zona }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Direccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Direccion
+                </th>
+                <td mat-cell *matCellDef="let element" width="20%">
+                  {{ element.Direccion }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Almacen">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Almacen
+                </th>
+                <td mat-cell *matCellDef="let element" width="15%">
+                  {{ AlmacenEntrega(element.Almacen) }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Cliente">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Cliente
+                </th>
+                <td mat-cell *matCellDef="let element" width="10%">
+                  {{ element.Nombre }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="FechaEntrega">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Fecha Entrega
+                </th>
+                <td mat-cell *matCellDef="let element" width="20%">
+                  {{ element.FechaEntrega | date: "EEEE d MMMM y":"UTC" }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button [hidden]="" [matMenuTriggerFor]="accionesEntregas">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #accionesEntregas="matMenu">
+                    <button mat-menu-item [disabled]="element.Estado !== 'Pendiente'" (click)="AsignarEntrega(element)">
+                      <span>Asignar Entrega</span>
+                    </button>
+                    <button mat-menu-item [disabled]="
+                        element.Estado === 'Finalizado' ||
+                        element.Estado === 'Pendiente'
+                      " (click)="DesAsignarEntrega(element)">
+                      <span>DesAsignar Entrega</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="EntregasColumns"></tr>
+              <tr mat-row *matRowDef="let element; columns: EntregasColumns"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[12, 24, 48]" showFirstLastButtons
+              aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+        </mat-tab>
+        <mat-tab label="Conductores">
+          <div class="tablaEntregas">
+            <app-conductores></app-conductores>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Depósitos">
+          <div class="tablaEntregas">
+            <app-depositos></app-depositos>
+          </div>
+
+        </mat-tab>
+      </mat-tab-group>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<mat-menu #Filtros="matMenu" (click)="$event.stopPropagation()">
+  <div style="margin: 20px;" (click)="$event.stopPropagation()">
+
+    <mat-form-field class="filtro">
+      <mat-label>Regional</mat-label>
+      <mat-select [(ngModel)]="RegionalSeleccionada" (selectionChange)="SeleccionarRegional($event)"
+        (click)="$event.stopPropagation()">
+        <mat-option *ngFor="let element of RegionalesList" [value]="element.Regional">
+          {{ element.Regional }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filtro">
+      <mat-label>Tiendas</mat-label>
+      <mat-select [(ngModel)]="TiendaSeleccionada" (selectionChange)="SeleccionarTiendas($event)"
+        (click)="$event.stopPropagation()">
+        <mat-option [value]="'Todas'">
+          Todas
+        </mat-option>
+        <mat-option *ngFor="let element of TiendasList" [value]="element.Tienda">
+          {{ element.Tienda }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filtro">
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="EstadoSeleccionado" (selectionChange)="SeleccionarEstado($event)"
+        (click)="$event.stopPropagation()">
+        <mat-option [value]="'Todos'">
+          Todos
+        </mat-option>
+        <mat-option [value]="'Pendiente'">
+          Pendiente
+        </mat-option>
+        <mat-option [value]="'Finalizado'">
+          <!-- <img
+            src="assets/images/Marcador-verde.png"
+            class="marker-leyenda"
+          /> -->
+          Finalizado
+        </mat-option>
+        <mat-option [value]="'Nuevo'">
+          <!-- <img
+            src="assets/images/Marcador-gris.png"
+            class="marker-leyenda"
+          /> -->
+          Nuevo
+        </mat-option>
+        <mat-option [value]="'En Progreso'">
+          <!-- <img
+            src="assets/images/Marcador-amarillo.png"
+            class="marker-leyenda"
+          /> -->
+          En Progreso
+        </mat-option>
+        <mat-option [value]="'Cancelado'">
+          <!--  <img
+            src="assets/images/Marcador-rojo.png"
+            class="marker-leyenda"
+          /> -->
+          Cancelado
+        </mat-option>
+        <mat-option [value]="'En Camino'">
+          <!-- <img
+            src="assets/images/Marcador-naranja.png"
+            class="marker-leyenda"
+          /> -->
+          En Camino
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filtro">
+      <mat-label>Conductores</mat-label>
+      <mat-select [(ngModel)]="ConductorSeleccionado" (selectionChange)="SeleccionarConductor($event)"
+        (click)="$event.stopPropagation()">
+        <mat-option [value]="'Todos'">
+          TODOS
+        </mat-option>
+        <mat-option *ngFor="let element of ConductoresList" [value]="element.CodUsuario">
+          {{ element.CodUsuario }}
+        </mat-option>
+        <mat-option [value]="'Sin Conductor'">
+          SIN CONDUCTOR
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--   <mat-form-field class="filtro">
+      <input
+        #currentdate
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="FechaSeleccionada"
+        (dateChange)="SeleccionarFecha($event)"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Ingrese las Fechas que desea Visualizar</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate [(ngModel)]="FechaSeleccionadaInicio" placeholder="Inicio" />
+        <input matEndDate [(ngModel)]="FechaSeleccionadaFin" placeholder="Fin"
+          (dateChange)="SeleccionarFecha($event)" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+</mat-menu>
+<mat-menu #configuraciones="matMenu">
+  <button mat-menu-item (click)="AbrirConfiguraciones()">
+    <span>Configuraciones</span>
+  </button>
+</mat-menu>

@@ -1,0 +1,105 @@
+<mat-card style="width: 500px; height: 600px;">
+  <mat-card-content>
+    <div class="popup">
+      <div class="row">
+        <div class="col-sm-6">
+          {{ FechaEntrega | date: "EEEE d MMMM y HH:mm:ss ":"UTC" }}
+        </div>
+        <div class="col-sm-6">
+          {{ Estado }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          {{ Nombre }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          {{ Direccion }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          {{ CodUsuario }}
+        </div>
+        <div class="col-sm-6">
+          {{ AlmacenDatos(Almacen) }}
+        </div>
+      </div>
+
+      <div *ngIf="EstadoTarea(IdEntrega, '01')" class="row">
+        <div class="col-sm-2">
+          <span class="badge tarea {{ EstadoTarea(IdEntrega, '01') }}">ENT</span>
+        </div>
+        <div class="col-sm-3">
+          {{
+          FechaTarea(IdEntrega, "01", "Inicio") == "1900-01-01T00:00:00.000Z"
+          ? ""
+          : (FechaTarea(IdEntrega, "01", "Inicio")
+          | date: "HH:mm:ss ":"UTC")
+          }}
+        </div>
+        <div class="col-sm-3">
+          {{
+          FechaTarea(IdEntrega, "01", "Fin") == "1900-01-01T00:00:00.000Z"
+          ? ""
+          : (FechaTarea(IdEntrega, "01", "Fin") | date: "HH:mm:ss ":"UTC")
+          }}
+        </div>
+        <div class="col-sm-4">
+          {{
+          ObservacionTarea(IdEntrega, "01") == "null"
+          ? ""
+          : ObservacionTarea(IdEntrega, "01")
+          }}
+        </div>
+      </div>
+      <div *ngIf="EstadoTarea(IdEntrega, '02')" class="row">
+        <div class="col-sm-2">
+          <span class="badge tarea {{ EstadoTarea(IdEntrega, '02') }}">COB</span>
+        </div>
+        <div class="col-sm-3">
+          {{
+          FechaTarea(IdEntrega, "02", "Inicio") == "1900-01-01T00:00:00.000Z"
+          ? ""
+          : (FechaTarea(IdEntrega, "02", "Inicio")
+          | date: "HH:mm:ss ":"UTC")
+          }}
+        </div>
+        <div class="col-sm-3">
+          {{
+          FechaTarea(IdEntrega, "02", "Fin") == "1900-01-01T00:00:00.000Z"
+          ? ""
+          : (FechaTarea(IdEntrega, "02", "Fin") | date: "HH:mm:ss ":"UTC")
+          }}
+        </div>
+        <div class="col-sm-4">
+          {{
+          ObservacionTarea(IdEntrega, "02") == "null"
+          ? ""
+          : ObservacionTarea(IdEntrega, "02")
+          }}
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-tab-group color="primary">
+    <mat-tab label="Respaldo">
+      <div>
+        <button mat-icon-button (click)="rotate()">
+          <mat-icon>rotate_right</mat-icon>
+        </button>
+      </div>
+      <div>
+        <img [@rotatedState]='state' [src]="FotoRespaldo" alt="Image Source" class="FotoRespaldo" />
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Firma">
+      <div>
+        <img [src]="FotoFirma" alt="Image Source" class="FotoFirma" />
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

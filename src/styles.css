@@ -1,0 +1,131 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin     : 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.marker-pin {
+  width        : 30px;
+  height       : 30px;
+  border-radius: 50% 50% 50% 0;
+  background   : #c30b82;
+  position     : absolute;
+  transform    : rotate(-45deg);
+  left         : 50%;
+  top          : 50%;
+  margin       : -15px 0 0 -15px;
+}
+
+.marker-pin::after {
+  content      : "";
+  width        : 24px;
+  height       : 24px;
+  margin       : 3px 0 0 3px;
+  background   : #fff;
+  position     : absolute;
+  border-radius: 50%;
+}
+
+
+
+.menuboton {
+  margin-right: -2%;
+}
+
+.menuboton button {
+  background-color: #e24939;
+  color           : #FFF;
+  border-radius   : 0px !important;
+  border          : 1px solid #ccc;
+}
+
+.toolbar {
+  background-color: #e24939
+}
+
+.boton {
+  color           : #fff;
+  background-color: #e24939
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background: #e24939;
+  height    : 5px;
+}
+
+/* .custom-div-icon i.awesome {
+  margin   : 12px auto;
+  font-size: 17px;
+}
+ */
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.custom-div-icon i {
+  position  : absolute;
+  width     : 22px;
+  font-size : 22px;
+  left      : 0;
+  right     : 0;
+  margin    : 10px auto;
+  text-align: center;
+}
+
+.custom-div-icon-progress i {
+  position  : relative;
+  width     : 22px;
+  font-size : 22px;
+  left      : 4px;
+  right     : 0;
+  margin    : 10px auto;
+  text-align: center;
+  animation : rotation 2s infinite linear;
+}
+
+@keyframes bounce-7 {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+
+  30% {
+    transform: scale(.9, 1.1) translateY(-100px);
+  }
+
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+.gps_ring {
+  animation: bounce-7 1.2s infinite;
+}

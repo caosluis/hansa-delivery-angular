@@ -1,0 +1,10 @@
+.tablaDetalleDepositos {
+  width: 100%;
+}
+.Foto {
+  /* -ms-transform: rotate(90deg);
+    transform: rotate(90deg); */
+  max-width: 400px;
+  max-height: 300px;
+  height: fit-content;
+}

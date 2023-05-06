@@ -1,0 +1,50 @@
+[
+    {
+        "IdRegional": "01",
+        "Regional": "La Paz",
+        "Latitud": -16.4897,
+        "Longitud": -68.1193
+    },
+    {
+        "IdRegional": "02",
+        "Regional": "Santa Cruz",
+        "Latitud": -17.8146,
+        "Longitud": -63.1561
+    },
+    {
+        "IdRegional": "03",
+        "Regional": "Cochabamba",
+        "Latitud": -17.414,
+        "Longitud": -66.1653
+    },
+    {
+        "IdRegional": "04",
+        "Regional": "Tarija",
+        "Latitud": -21.5178,
+        "Longitud": -64.7296
+    },
+    {
+        "IdRegional": "05",
+        "Regional": "Pando",
+        "Latitud": -10.7989,
+        "Longitud": -66.9988
+    },
+    {
+        "IdRegional": "06",
+        "Regional": "Chuquisaca",
+        "Latitud": -19.0353,
+        "Longitud": -65.2592
+    },
+    {
+        "IdRegional": "07",
+        "Regional": "Oruro",
+        "Latitud": -17.9717,
+        "Longitud": -67.0931
+    },
+    {
+        "IdRegional": "10",
+        "Regional": "El Alto",
+        "Latitud": -16.5037,
+        "Longitud": -68.1617
+    }
+]

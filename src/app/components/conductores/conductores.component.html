@@ -1,0 +1,106 @@
+<mat-card>
+  <div class="row">
+    <div class="col-sm-7">
+      <mat-card-header>
+        <mat-card-title>Conductores Registrados</mat-card-title>
+        <mat-card-subtitle>Visualiza los Conductores y permite crear Nuevos
+          Conductrores.</mat-card-subtitle>
+      </mat-card-header>
+    </div>
+    <div class="col-sm-5">
+      <ul class="nav justify-content-end menuboton">
+        <li class="nav-item">
+          <button mat-raised-button class="boton" (click)="CrearConductor('Nuevo')">
+            <mat-icon>add</mat-icon>Nuevo
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tablaConductores">
+    <table mat-table [dataSource]="Conductores" matSort>
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Nombre
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Nombre }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="CI">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          CI
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.CI }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Placa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Placa
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Placa }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Telefono">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Telefono
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Telefono }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Capacidad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Capacidad KG
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Capacidad }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Descripcion
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Descripcion }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Estado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Estado
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Estado }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="accionesConductores">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #accionesConductores="matMenu">
+            <button mat-menu-item (click)="ActivarDesactivarConductor(element)">
+              <span>Activar/Desactivar</span>
+            </button>
+            <button mat-menu-item (click)="CrearConductor(element)">
+              <span>Editar</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="ConductoresColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: ConductoresColumns"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[12, 24, 48]"></mat-paginator>
+  </div>
+</mat-card>
